@@ -71,7 +71,7 @@ module BakedFileSystem
     end
   end
 
-  def get(path)
+  def get?(path)
     path = path.strip
     path = "/" + path unless path.starts_with?("/")
 
@@ -79,6 +79,11 @@ module BakedFileSystem
       file.path == path
     end
 
+    return file if file
+  end
+
+  def get(path)
+    file = get?(path)
     return file if file
 
     raise NoSuchFileError.new("get: #{path}: No such file")

@@ -29,6 +29,11 @@ describe BakedFileSystem do
     end
   end
 
+  it "return nil for missing file with get?" do
+    file = Storage.get?("missing.file")
+    file.should eq(nil)    
+  end
+
   it "can read file contents" do
     files = %w(images/sidekiq.png /lorem.txt)
     files.each do |path|
